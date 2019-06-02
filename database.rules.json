@@ -1,0 +1,46 @@
+{
+  "rules": {
+    "courses": {
+      ".read": true,
+      "$course": {
+        // Any course can be read, but can only be modified by an admin.
+        ".read": true,
+        ".write": "root.child('users').child(auth.uid).child('roles').child('isAdmin').val() === true"
+      }
+    },
+
+    "programs": {
+      ".read": true,
+      "$program": {
+        // Any program can be read, but can only be modified by an admin.
+        // (TODO: Should partners also participate in this?)
+        ".read": true,
+        ".write": "root.child('users').child(auth.uid).child('roles').child('isAdmin').val() === true"
+      }
+    },
+
+    // TODO: restrict me
+    "users": {
+      ".read": true,
+      ".write": true
+    },
+
+    // TODO: restrict me
+    "instructors": {
+      ".read": true,
+      ".write": true
+    },
+
+    // TODO: restrict me
+    "partners": {
+      ".read": true,
+      ".write": true
+    },
+
+    // TODO: restrict me
+    "students": {
+      ".read": true,
+      ".write": true
+    },
+  }
+}

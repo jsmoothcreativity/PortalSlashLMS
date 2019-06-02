@@ -1,0 +1,21 @@
+service firebase.storage {
+  match /b/{bucket}/o {
+    // match /{allPaths=**} {
+    //   allow read;
+    //   allow write: if request.auth != null;
+    // }
+
+    match /{userId}/profilePicture/{fileName} {
+      // Anyone can read
+      allow read;
+
+      allow write;
+
+      // TODO: restrict to the specific user or admins to edit. This will likely require tokens.
+      // Only the user can upload their own profile picture
+      // Profile picture must be of content-type "image/*"
+      // allow write: if request.auth.uid == userId
+      //              && request.resource.contentType.matches('image/.+');
+    }
+  }
+}
